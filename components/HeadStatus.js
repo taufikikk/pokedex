@@ -5,6 +5,7 @@ export default function HeadStatus() {
     <Head>
       <title>Pokédex</title>
       <link rel="icon" href="/Pokeball.png" />
+      <meta name="viewport" content="initial-scale=1.0, width=device-width" />
     </Head>
   )
 }

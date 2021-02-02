@@ -71,11 +71,9 @@ export default function Detail() {
   if (error) return <div><h1>Internal Server Error</h1></div>
   return (
     <>
-      <HeadStatus></HeadStatus>
-      <Header></Header>
       <Combined>
         <h1>{detail.name}</h1>
-        <img src={detail.sprites.front_default}></img>
+        <img src={detail.sprites.front_default} alt={detail.name}></img>
         <h1>Moves</h1>
         <ul>
           {detail.moves.map((move, i) => {
@@ -90,7 +88,6 @@ export default function Detail() {
         </ul>
         <buton onClick={add}>Button</buton>
       </Combined>
-      <Footer></Footer>
     </>
   )
 }

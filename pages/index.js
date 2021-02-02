@@ -31,8 +31,6 @@ export default function Home() {
   if (error) return <div><h1>Internal Server Error</h1></div>
   return (
     <div className={styles.container}>
-      <Header />
-      <HeadStatus />
       <main className={styles.main}>
         <div>
           {data.pokemons.results.map((pokemon, i) => {
@@ -40,7 +38,6 @@ export default function Home() {
           })}
         </div>
       </main>
-      <Footer />
     </div>
   )
 }

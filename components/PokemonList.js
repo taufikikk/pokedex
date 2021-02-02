@@ -5,7 +5,7 @@ export default function PokemonList({ data }) {
   return (
     <Link href={'detail/' + data.name}>
       <Combined>
-        <img src={data.image}></img>
+        <img src={data.image} alt={data.name}></img>
         <h1>{data.name}</h1>
       </Combined>
     </Link>
