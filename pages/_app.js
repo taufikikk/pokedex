@@ -7,10 +7,12 @@ import Footer from '../components/Footer'
 function MyApp({ Component, pageProps }) {
   return (
     <ApolloProvider client={client}>
-      <HeadStatus />
-      <Header />
-      <Component {...pageProps} />
-      <Footer />
+      <html lang="en">
+        <HeadStatus />
+        <Header />
+        <Component {...pageProps} />
+        <Footer />
+      </html>
     </ApolloProvider>
   )
 }
