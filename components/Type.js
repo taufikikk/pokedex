@@ -1,10 +1,10 @@
 import React from 'react'
+import { TypeCard } from '../styles/styles'
 
 export default function Type({ data }) {
-  console.log(data)
   return (
-    <>
-        <li>{data.type.name}</li>
-    </>
+    <TypeCard>
+        <p>{data.type.name}</p>
+    </TypeCard>
   )
 }

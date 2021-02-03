@@ -1,10 +1,12 @@
 import React from 'react'
-import styles from '../styles/Home.module.css'
+import { FooterStyle } from '../styles/styles'
 
 export default function Footer() {
   return (
-    <footer className={styles.footer}>
-      Taufiq Ismail | {(new Date().getFullYear())}
-    </footer>
+    <FooterStyle>
+      <footer>
+        Taufiq Ismail | {(new Date().getFullYear())}
+      </footer>
+    </FooterStyle>
   )
 }

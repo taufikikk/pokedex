@@ -1,0 +1,5 @@
+export { default as Header } from './Header'
+export { default as Footer } from './Footer'
+export { default as Move } from './Move'
+export { default as PokemonList } from './PokemonList'
+export { default as Type } from './Type'

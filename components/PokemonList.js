@@ -1,13 +1,19 @@
 import React from 'react'
-import { Combined } from '../styles/styles'
+import { PokemonCard } from '../styles/styles'
 import Link from 'next/link'
+import LazyLoad from 'react-lazyload'
+
 export default function PokemonList({ data }) {
   return (
     <Link href={'detail/' + data.name}>
-      <Combined>
-        <img src={data.image} alt={data.name}></img>
+      <PokemonCard>
+        <LazyLoad
+          once={true}
+          placeholder="Loading">
+          <img src={data.image} alt={data.name}></img>
+        </LazyLoad>
         <h1>{data.name}</h1>
-      </Combined>
+      </PokemonCard>
     </Link>
   )
 }

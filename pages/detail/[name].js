@@ -1,13 +1,10 @@
 import React, { useState, useEffect } from 'react'
-import { Combined } from '../../styles/styles'
+import { Container, DetailCard, MoveContainer, DetailContainer, StatusContainer, ButtonCatch } from '../../styles/styles'
 import { useRouter } from 'next/router'
-import { gql, useQuery } from '@apollo/client';
-import Footer from '../../components/Footer'
-import Header from '../../components/Header'
-import HeadStatus from '../../components/HeadStatus'
-import Move from '../../components/Move'
-import Type from '../../components/Type'
-import { set, del } from "idb-keyval";
+import { gql, useQuery } from '@apollo/client'
+import { Move, Type } from '../../components/'
+import { set } from 'idb-keyval'
+import { CircleLoading } from 'react-loadingg'
 
 const GET_POKEMON = gql`
 query pokemon($name: String!) {
@@ -51,43 +48,42 @@ export default function Detail() {
     if (!loading) {
       setDetail(data.pokemon)
     }
-  }, [data])
+  }, [loading])
 
 
   function add() {
     const probability = Math.random() < 0.5;
-    console.log(probability)
-
-    console.log('ok')
     if (probability) {
       set('pokemons', [...myPokemons, setMyPokemons(myPokemons.concat({ name: detail.name }))]);
     } else {
-      console.log('coba lagi')
+      console.log('try again')
     }
   }
 
-
-  if (loading) return <div>Loading</div>
+  if (loading) return <CircleLoading />
   if (error) return <div><h1>Internal Server Error</h1></div>
   return (
-    <>
-      <Combined>
-        <h1>{detail.name}</h1>
-        <img src={detail.sprites.front_default} alt={detail.name}></img>
-        <h1>Moves</h1>
-        <ul>
-          {detail.moves.map((move, i) => {
-            return <Move key={i} data={move}></Move>
-          })}
-        </ul>
-        <h1>Types</h1>
-        <ul>
+    <Container>
+      <DetailContainer>
+        <DetailCard>
+          <h1>{detail.name}</h1>
+          <img src={detail.sprites.front_default} alt={detail.name}></img>
           {detail.types.map((type, i) => {
             return <Type key={i} data={type}></Type>
           })}
-        </ul>
-        <buton onClick={add}>Button</buton>
-      </Combined>
-    </>
+        </DetailCard>
+        <StatusContainer>
+          <h1>Moves</h1>
+          <MoveContainer>
+            {detail.moves.map((move, i) => {
+              return <Move key={i} data={move}></Move>
+            })}
+          </MoveContainer>
+        </StatusContainer>
+      </DetailContainer>
+      <ButtonCatch>
+        <buton onClick={add}>Catch!</buton>
+      </ButtonCatch>
+    </Container>
   )
 }

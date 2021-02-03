@@ -1,7 +1,13 @@
 import React from 'react'
 import Link from 'next/link'
-export default function Header(){
+import { HeaderStyle } from '../styles/styles'
+
+export default function Header() {
   return (
-    <header><Link href="/">Pokedex</Link></header>
+    <HeaderStyle>
+      <header>
+        <Link href="/">Pokedex</Link>
+      </header>
+    </HeaderStyle>
   )
 }
