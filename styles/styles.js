@@ -159,6 +159,7 @@ export const MoveContainer = styled.div`
 
 export const DetailContainer = styled.div`
   @media (min-width: 1200px) {
+    padding: 5rem 0;
     display: flex;
     text-align: center;
     flex: auto;
@@ -232,11 +233,16 @@ export const ButtonCatch = styled.div`
   border-radius: 25px;
   border: 3px solid #c7ffd8;
   cursor: pointer;
-  & a {
-    text-decoration: none;
-    color: #f8f1f1;
-    font-family: comic-sans-ms;
-    font-size: 3rem;
-    margin-left: 1rem;
-  }
+`
+
+export const BtnLoadMore = styled.div`
+  ${hoverStyles};
+  ${activeStyles};
+  padding: 0.5rem 3rem;  
+  background-color: #d3e0ea;
+  border: 3px solid #c7ffd8;
+  border-radius: 1rem;
+  cursor: pointer;
+  color: #276678;
+  font-weight: bold;
 `

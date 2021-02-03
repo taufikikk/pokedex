@@ -50,7 +50,6 @@ export default function Detail() {
     }
   }, [loading])
 
-
   function add() {
     const probability = Math.random() < 0.5;
     if (probability) {
@@ -82,7 +81,7 @@ export default function Detail() {
         </StatusContainer>
       </DetailContainer>
       <ButtonCatch>
-        <buton onClick={add}>Catch!</buton>
+        <buton onClick={add}><p>Catch!</p></buton>
       </ButtonCatch>
     </Container>
   )

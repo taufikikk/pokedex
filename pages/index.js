@@ -3,7 +3,7 @@ import { gql, useQuery } from '@apollo/client'
 import PokemonList from '../components/PokemonList'
 import LazyLoad from 'react-lazyload'
 import { CircleLoading } from 'react-loadingg'
-import { PokemonContainer } from '../styles/styles'
+import { BtnLoadMore, Container, PokemonContainer } from '../styles/styles'
 
 const GET_POKEMONS = gql`
 query pokemons($limit: Int, $offset: Int) {
@@ -23,22 +23,48 @@ query pokemons($limit: Int, $offset: Int) {
 `
 
 export default function Home() {
-  const { data, error, loading } = useQuery(GET_POKEMONS)
+  const [limit, setLimit] = useState(20)
+  const gqlVariables = {
+    limit: limit,
+    offset: 1,
+  };
+  const { data, error, loading } = useQuery(GET_POKEMONS, {
+    variables: gqlVariables
+  })
+
+  const [pokemons, setPokemons] = useState([])
+
+  useEffect(() => {
+    if (!loading) {
+      setPokemons(data.pokemons.results)
+    }
+  }, [loading, data])
+
+  function loadMore() {
+    setLimit(limit + 20)
+  }
 
   if (loading) return <CircleLoading />
   if (error) return <div><h1>Internal Server Error</h1></div>
   return (
-    <PokemonContainer>
-      {data.pokemons.results.map((pokemon, i) => (
-        <LazyLoad
-          key={i}
-          height={100}
-          offset={[100, 100]}
-          placeholder="Loading"
-        >
-          <PokemonList key={i} data={pokemon}></PokemonList>
-        </LazyLoad>
-      ))}
-    </PokemonContainer>
+    <Container>
+      <PokemonContainer>
+        {pokemons.map((pokemon, i) => (
+          <LazyLoad
+            key={i}
+            height={100}
+            offset={[100, 100]}
+            placeholder="Loading"
+          >
+            <PokemonList key={i} data={pokemon}></PokemonList>
+          </LazyLoad>
+        ))}
+      </PokemonContainer>
+      <a onClick={loadMore}>
+        <BtnLoadMore>
+          <p>Load More</p>
+        </BtnLoadMore>
+      </a>
+    </Container>
   )
 }
