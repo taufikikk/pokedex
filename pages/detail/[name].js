@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react'
-import { Container, DetailCard, MoveContainer, DetailContainer, StatusContainer, ButtonCatch } from '../../styles/styles'
+import { Container, DetailCard, MoveContainer, DetailContainer, StatusContainer, ButtonCatchContainer, ButtonCatch } from '../../styles/styles'
 import { useRouter } from 'next/router'
 import { gql, useQuery } from '@apollo/client'
 import { Move, Type } from '../../components/'
 import { set } from 'idb-keyval'
 import { CircleLoading } from 'react-loadingg'
+import Swal from 'sweetalert2'
 
 const GET_POKEMON = gql`
 query pokemon($name: String!) {
@@ -42,7 +43,6 @@ export default function Detail() {
     moves: [],
     types: []
   })
-  const [myPokemons, setMyPokemons] = useState([{ name: detail.name }])
 
   useEffect(() => {
     if (!loading) {
@@ -52,10 +52,28 @@ export default function Detail() {
 
   function add() {
     const probability = Math.random() < 0.5;
+
     if (probability) {
-      set('pokemons', [...myPokemons, setMyPokemons(myPokemons.concat({ name: detail.name }))]);
+      Swal.fire({
+        title: 'Catched!',
+        input: 'text',
+        inputLabel: 'Name',
+        inputPlaceholder: 'Please Give a Name!'
+      })
+        .then(data => {
+          set(data.value, { name: detail.name, custom_name: data.value, image: detail.sprites.front_default })
+          Swal.fire({
+            icon: 'success',
+            title: 'Success!',
+            text: 'Pokemon Saved to List!',
+          })
+        })
     } else {
-      console.log('try again')
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops... Catch Failed!',
+        text: 'Please Try Again!',
+      })
     }
   }
 
@@ -80,9 +98,13 @@ export default function Detail() {
           </MoveContainer>
         </StatusContainer>
       </DetailContainer>
-      <ButtonCatch>
-        <buton onClick={add}><p>Catch!</p></buton>
-      </ButtonCatch>
+      <ButtonCatchContainer>
+        <a onClick={add}>
+          <ButtonCatch>
+            <p>Catch!</p>
+          </ButtonCatch>
+        </a>
+      </ButtonCatchContainer>
     </Container>
   )
 }

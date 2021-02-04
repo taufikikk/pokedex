@@ -1,12 +1,17 @@
 import React from 'react'
 import Link from 'next/link'
-import { HeaderStyle } from '../styles/styles'
+import { HeaderStyle, HeaderLeft, HeaderRight } from '../styles/styles'
 
 export default function Header() {
   return (
     <HeaderStyle>
       <header>
-        <Link href="/">Pokedex</Link>
+        <HeaderLeft>
+          <Link href="/">Pokedex</Link>
+        </HeaderLeft>
+        <HeaderRight>
+          <Link href="/mypokemons">My Pokemons</Link>
+        </HeaderRight>
       </header>
     </HeaderStyle>
   )

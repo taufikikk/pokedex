@@ -75,6 +75,9 @@ export const PokemonContainer = styled.div`
   justify-content: center;
 `
 
+export const Fragment = styled.div`
+`
+
 export const PokemonCard = styled.div`
   ${basicStyles};
   ${hoverStyles};
@@ -121,13 +124,29 @@ export const HeaderStyle = styled.div`
   background-color: #16697a;
   position: fixed;
   z-index: 10;
+`
+
+
+export const HeaderLeft = styled.div`
   & a {
+    float: left;
     text-decoration: none;
     color: #f8f1f1;
     font-family: comic-sans-ms;
     font-size: 3rem;
     margin-left: 1rem;
   }
+`
+
+export const HeaderRight = styled.div`
+  & a {
+      float: right;
+      text-decoration: none;
+      color: #f8f1f1;
+      padding: 1rem;
+      background-color: #1687a7;
+      margin-right: 1rem;
+    }
 `
 
 export const Container = styled.div`
@@ -219,20 +238,22 @@ export const TypeCard = styled.div`
 
 `
 
+export const ButtonCatchContainer = styled.div`
+  position: fixed;
+  bottom: 2rem;
+  z-index: 10;
+`
+
 export const ButtonCatch = styled.div`
   ${hoverStyles};
   ${activeStyles};
-  width: 10%;
+  padding: 0.5rem 3rem;  
   background-color: #94b5c0;
-  position: fixed;
-  padding: 1rem 2rem;
-  bottom: 2rem;
-  z-index: 10;
-  font-weight: bold;
-  text-align: center;
-  border-radius: 25px;
   border: 3px solid #c7ffd8;
+  border-radius: 1rem;
   cursor: pointer;
+  color: #276678;
+  font-weight: bold;
 `
 
 export const BtnLoadMore = styled.div`
