@@ -1,11 +1,21 @@
 import React from 'react'
 import { PokemonCard } from '../styles/styles'
-import Link from 'next/link'
 import LazyLoad from 'react-lazyload'
+import { useRouter } from 'next/router'
 
 export default function PokemonList({ data }) {
+  const router = useRouter()
+
+  function handleClick(e) {
+    e.preventDefault()
+    router.push({
+      pathname: "/detail",
+      query: { name: data.name},
+    })
+  }
+
   return (
-    <Link href={'detail/' + data.name}>
+    <a onClick={handleClick}>
       <PokemonCard>
         <LazyLoad
           once={true}
@@ -14,6 +24,6 @@ export default function PokemonList({ data }) {
         </LazyLoad>
         <h1>{data.custom_name ? data.custom_name : data.name}</h1>
       </PokemonCard>
-    </Link>
+    </a>
   )
 }

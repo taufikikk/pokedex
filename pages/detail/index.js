@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Container, DetailCard, MoveContainer, DetailContainer, StatusContainer, ButtonCatchContainer, ButtonCatch } from '../../styles/styles'
 import { useRouter } from 'next/router'
 import { gql, useQuery } from '@apollo/client'
-import { Move, Type } from '../../components/'
+import { Move, Type } from '../../components'
 import { set } from 'idb-keyval'
 import { CircleLoading } from 'react-loadingg'
 import Swal from 'sweetalert2'
@@ -31,7 +31,7 @@ query pokemon($name: String!) {
 }
 `
 
-export default function Detail() {
+export default function Detail({ href }) {
   const router = useRouter()
   const { name } = router.query
   const { data, error, loading } = useQuery(GET_POKEMON, {
