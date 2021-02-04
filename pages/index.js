@@ -3,7 +3,7 @@ import { gql, useQuery } from '@apollo/client'
 import PokemonList from '../components/PokemonList'
 import LazyLoad from 'react-lazyload'
 import { CircleLoading } from 'react-loadingg'
-import { BtnLoadMore, Container, PokemonCard, PokemonContainer } from '../styles/styles'
+import { BtnLoadMore, Container, PokemonContainer } from '../styles/styles'
 
 const GET_POKEMONS = gql`
 query pokemons($limit: Int, $offset: Int) {
@@ -56,10 +56,7 @@ export default function Home() {
             offset={[100, 100]}
             placeholder="Loading"
           >
-            <PokemonCard>
-              <PokemonList key={i} data={pokemon}></PokemonList>
-              <h1>{pokemon.name}</h1>
-            </PokemonCard>
+            <PokemonList key={i} data={pokemon}></PokemonList>
           </LazyLoad>
         ))}
       </PokemonContainer>
